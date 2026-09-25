@@ -1,15 +1,18 @@
-
 pipeline {
     agent any
 
-    stages {
+    environment {
+        PATH = "/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    }
 
+    stages {
         stage('Build') {
             steps {
                 echo "Build Docker Image"
 
                 dir('week7') {
-                    sh "docker build -t mypythonflaskapp ."
+                    sh 'docker --version'
+                    sh 'docker build -t mypythonflaskapp .'
                 }
             }
         }
@@ -19,8 +22,8 @@ pipeline {
                 echo "Run application in Docker Container"
 
                 dir('week7') {
-                    sh "docker rm -f mycontainer || true"
-                    sh "docker run -d -p 5001:5001 --name mycontainer mypythonflaskapp"
+                    sh 'docker rm -f mycontainer || true'
+                    sh 'docker run -d -p 5001:5001 --name mycontainer mypythonflaskapp'
                 }
             }
         }

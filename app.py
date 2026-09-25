@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
-
+#feature_1 update
 @app.route("/", methods=["GET", "POST"])
 def register():
     if request.method == "POST":

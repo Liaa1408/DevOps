@@ -1,0 +1,26 @@
+stage('Build') {
+    steps {
+        echo "Build Docker Image"
+
+        dir('week9') {
+            sh 'docker --version'
+            sh 'docker build -t mypythonflaskapp:week9 .'
+        }
+    }
+}
+
+stage('Docker Hub Push') {
+    steps {
+        sh 'docker tag mypythonflaskapp:week9 suhithasv/week9:latest'
+        sh 'docker push suhithasv/week9:latest'
+    }
+}
+
+stage('Run') {
+    steps {
+        echo "Run application in Docker Container"
+
+        sh 'docker rm -f mypythonflaskcontainer || true'
+        sh 'docker run -d -p 5001:5001 --name mypythonflaskcontainer mypythonflaskapp:week9'
+    }
+}

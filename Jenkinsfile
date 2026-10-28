@@ -4,7 +4,7 @@ pipeline {
 
     environment {
         PATH = "/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-        DOCKER_IMAGE = 'suhitasv/devops-week12:latest'
+        DOCKER_IMAGE = 'suhithasv/devops-week12:latest'
         APP_PORT = '5001'
     }
 

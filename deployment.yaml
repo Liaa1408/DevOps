@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: devops-week12
-          image: suhitasv/devops-week12:latest
+          image: suhithasv/devops-week12:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 5001

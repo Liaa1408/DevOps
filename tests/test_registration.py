@@ -72,6 +72,7 @@ def test_short_password(setup_teardown):
 
 
 
+
 def test_valid_input(setup_teardown):
     driver = setup_teardown
     driver.get(BASE_URL)
@@ -86,7 +87,11 @@ def test_valid_input(setup_teardown):
 
     driver.find_element(By.NAME, "sb").click()
 
-    # Confirm that the form navigated to the greeting page
-    assert "/submit" in driver.current_url
-    assert "Hello, suhitha!" in driver.page_source
+    # Wait for the result and verify the greeting
+    from selenium.webdriver.support.ui import WebDriverWait
 
+    WebDriverWait(driver, 5).until(
+        lambda d: "Hello, suhitha!" in d.page_source
+    )
+
+    assert "Welcome to the website" in driver.page_source
